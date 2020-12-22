@@ -1,0 +1,18 @@
+{
+  "name": "cah-cards-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@bixelpitch/cah-cards": "^1.0.3",
+    "bootstrap": "^4.5.3",
+    "next": "10.0.3",
+    "react": "17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "17.0.1"
+  }
+}
