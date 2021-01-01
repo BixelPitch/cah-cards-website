@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node copyCards.js; next dev",
-    "build": "node copyCards.js; next build",
-    "start": "node copyCards.js; next start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@bixelpitch/cah-cards": "^2.0.0",
