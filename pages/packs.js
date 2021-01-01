@@ -1,9 +1,21 @@
 import Head from 'next/head';
-import cards from '@BixelPitch/cah-cards/dist/index.json';
-import packs from '@BixelPitch/cah-cards/dist/all.json';
 import ReactCountryFlag from 'react-country-flag';
+import { useEffect, useState } from 'react';
 
 export default function Packs() {
+  const [ index, setIndex ] = useState({});
+  const [ packs, setPacks ] = useState([]);
+
+  useEffect(() => {
+    fetch('/cards/index.json')
+      .then((x) => x.json())
+      .then((data) => setIndex(data));
+
+    fetch('/cards/all.json')
+      .then((x) => x.json())
+      .then((data) => setPacks(data));
+  }, []);
+
   const packsList = packs.map((pack, index) => {
     return (
       <div key={ index } className="col col-6 col-md-12 p-1">
@@ -55,7 +67,7 @@ export default function Packs() {
             <a href="/packs" className="btn btn-link text-light mr-2">PACKS</a>
           </section>
           <section className="navbar-section align-right">
-            <a href="https://github.com/BixelPitch/cah-cards/releases" className="btn btn-link text-light mr-2">{ cards.version }</a>
+            <a href="https://github.com/BixelPitch/cah-cards/releases" className="btn btn-link text-light mr-2">{ index.version || '' }</a>
             <a href="https://github.com/BixelPitch/cah-cards" className="mr-2">
               <img height="40" src="/github.png" />
             </a>

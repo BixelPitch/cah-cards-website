@@ -1,18 +1,26 @@
 import Head from 'next/head';
-import cards from '@BixelPitch/cah-cards/dist/index.json';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const totalPacks = cards.stats.packs_translated 
-    + cards.stats.packs_original
-    + cards.stats.packs_official;
-  const totalLanguages = cards.stats.languages.length;
-  const totalBlackCards = cards.stats.black_cards_official 
-    + cards.stats.black_cards_original
-    + cards.stats.black_cards_translated;
-  const totalWhiteCards = cards.stats.white_cards_official
-    + cards.stats.white_cards_original
-    + cards.stats.white_cards_translated;
-  
+  const [ index, setIndex ] = useState({});
+
+  const totalPacks = !index.stats ? 0 : index.stats.packs_translated 
+    + index.stats.packs_original
+    + index.stats.packs_official;
+  const totalLanguages = !index.stats ? 0 : index.stats.languages.length;
+  const totalBlackCards = !index.stats ? 0 : index.stats.black_cards_official 
+    + index.stats.black_cards_original
+    + index.stats.black_cards_translated;
+  const totalWhiteCards = !index.stats ? 0 : index.stats.white_cards_official
+    + index.stats.white_cards_original
+    + index.stats.white_cards_translated;
+
+  useEffect(() => {
+    fetch('/cards/index.json')
+      .then((x) => x.json())
+      .then((data) => setIndex(data));
+  }, []);
+
   return (
     <div>
       <Head>
@@ -27,7 +35,7 @@ export default function Home() {
             <a href="/packs" className="btn btn-link text-light mr-2">PACKS</a>
           </section>
           <section className="navbar-section align-right">
-            <a href="https://github.com/BixelPitch/cah-cards/releases" className="btn btn-link text-light mr-2">{ cards.version }</a>
+            <a href="https://github.com/BixelPitch/cah-cards/releases" className="btn btn-link text-light mr-2">{ index.version || '' }</a>
             <a href="https://github.com/BixelPitch/cah-cards" className="mr-2">
               <img height="40" src="/github.png" />
             </a>
