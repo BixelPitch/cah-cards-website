@@ -65,6 +65,7 @@ export default function Packs() {
           <section className="navbar-section">
             <a href="/" className="navbar-brand text-light mr-2">CAH Cards</a>
             <a href="/packs" className="btn btn-link text-light mr-2">PACKS</a>
+            <a href="/cards" className="btn btn-link text-light mr-2">CARDS</a>
           </section>
           <section className="navbar-section align-right">
             <a href="https://github.com/BixelPitch/cah-cards/releases" className="btn btn-link text-light mr-2">{ index.version || '' }</a>
